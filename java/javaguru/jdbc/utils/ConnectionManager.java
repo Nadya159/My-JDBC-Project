@@ -1,4 +1,4 @@
-package javaguru.jdbc.utils;
+package by.javaguru.utils;
 
 import java.lang.reflect.Proxy;
 import java.sql.Connection;
@@ -17,7 +17,16 @@ public class ConnectionManager {
     private static BlockingQueue<Connection> pool;
 
     static {
+        loadDriver();
         initConnectionPool();
+    }
+
+    private static void loadDriver() {
+        try {
+            Class.forName("org.postgresql.Driver");
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     private static void initConnectionPool() {
