@@ -1,6 +1,7 @@
 package by.javaguru.servlet;
 
 import by.javaguru.service.ProductService;
+import by.javaguru.utils.JspHelper;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -18,20 +19,7 @@ public class ProductServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setContentType("text/html");
         resp.setCharacterEncoding(StandardCharsets.UTF_8.name());
-
-        try (var writer = resp.getWriter()) {
-            {
-                writer.write("<h3>Список продуктов:</h3>");
-                writer.write("<ul>");
-                productService.findAll().stream().forEach(productDto ->
-                        writer.write("""
-                                <li>
-                                <a href='/products?productId=%d'>%s</a>
-                                </li>
-                                """.formatted(productDto.id(), productDto.desription())));
-                writer.write("<ul>");
-            }
-        }
-
+        req.setAttribute("products", productService.findAll());
+        req.getRequestDispatcher(JspHelper.getPath("products")).forward(req,resp);
     }
 }
