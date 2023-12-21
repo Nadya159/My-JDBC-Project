@@ -1,11 +1,20 @@
 package by.javaguru.dto;
 
+import by.javaguru.entity.Gender;
+import by.javaguru.entity.Role;
 import lombok.Builder;
-import lombok.Data;
+import lombok.Value;
 
-@Data
+import java.time.LocalDate;
+
+@Value
 @Builder
 public class UserDto {
-    private Integer id;
-    private String email;
+    Integer id;
+    String name;
+    String email;
+    String phone;
+    Role role;
+    Gender gender;
+    LocalDate birthday;
 }

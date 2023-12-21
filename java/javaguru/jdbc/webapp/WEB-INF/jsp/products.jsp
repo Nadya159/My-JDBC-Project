@@ -4,7 +4,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html>
 <head>
-    <title>Title</title>
+    <title>Products</title>
     <style type="text/css">
         TABLE {
             border-collapse: collapse; /* Убираем двойные линии между ячейками */
@@ -16,6 +16,7 @@
     </style>
 </head>
 <body>
+<%@include file="header.jsp"%>
 <h3>Список продуктов JSP</h3>
 <table>
     <tr>
